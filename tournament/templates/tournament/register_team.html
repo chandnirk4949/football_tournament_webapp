@@ -6,17 +6,16 @@
 
 <div class="container">
   <h1>Team Registration</h1>
-<h6>Maximum of 20 members per each team</h6>
+  <h6>Maximum of 20 members per each team</h6>
 
-<form id="team-members" class="team-member-form mt-5" method="post">
-  {% csrf_token %}
-  <label for>Team Name</label>
-  <input type="text" name="team_name" placeholder="Enter team name" required>
-  <div id="member-list">
-  </div>
-  <button type="button" id="add-member-button">Add member</button>
-  <button type="submit" id="submit-button">Register</button>
-</form>
-
+  <form id="team-members" class="team-member-form mt-5" method="post">
+    {% csrf_token %}
+    <label for>Team Name</label>
+    <input type="text" name="team_name" placeholder="Enter team name" required>
+    <div id="member-list">
+    </div>
+    <button type="button" id="add-member-button">Add member</button>
+    <button type="submit" id="submit-button">Register</button>
+  </form>
 </div>
 {% endblock %}

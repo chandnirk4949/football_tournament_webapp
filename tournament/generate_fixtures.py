@@ -1,10 +1,13 @@
-
 import itertools
-from datetime import datetime, timedelta, time
 import random
-from .models import Teams, Fixtures
+from datetime import datetime, time, timedelta
+
+from .models import Fixtures, Teams
+
+
+# function to generate fixtures automatically with the predefined data of 5 venues and in the predefined time span
 def generate_fixtures():
-    # Define the teams (replace these with your actual team names)
+    # Define the teams
     teams = Teams.objects.all()
 
     # Define the start and end dates for the tournament (hard-coded values)
@@ -15,9 +18,14 @@ def generate_fixtures():
     match_time_1 = time(10, 0)  # Example: 10:00 AM
     match_time_2 = time(15, 0)  # Example: 3:00 PM
 
-    # Define venues
-    # venues = Venue.objects.all()
-    venues = ["Lulu stadium, Palarivattom", "Adam stadium, Edappally", "Forum stadium, Vennala", "Oberon stadium, Kaloor", "Grand Central stadium, Fort Kochi"]
+    # Define 5 venues
+    venues = [
+        "Lulu stadium, Palarivattom",
+        "Adam stadium, Edappally",
+        "Forum stadium, Vennala",
+        "Oberon stadium, Kaloor",
+        "Grand Central stadium, Fort Kochi",
+    ]
 
     # Initialize variables
     fixtures = []
@@ -43,13 +51,17 @@ def generate_fixtures():
                 # Check if both teams have had a rest day
                 if (
                     last_match_datetime[team1] is None
-                    or (current_date - last_match_datetime[team1]).days > 1 # type: ignore
+                    or (current_date - last_match_datetime[team1]).days > 1  # type: ignore
                 ) and (
                     last_match_datetime[team2] is None
-                    or (current_date - last_match_datetime[team2]).days > 1 # type: ignore
+                    or (current_date - last_match_datetime[team2]).days > 1  # type: ignore
                 ):
                     # Determine the match time based on the number of matches scheduled on the current date
-                    match_time = match_time_1 if len(matches_on_current_date) % 2 == 0 else match_time_2
+                    match_time = (
+                        match_time_1
+                        if len(matches_on_current_date) % 2 == 0
+                        else match_time_2
+                    )
                     match_datetime = datetime.combine(current_date, match_time)
 
                     # Randomly choose a venue that hasn't been used yet
@@ -62,7 +74,9 @@ def generate_fixtures():
                         venues_used.clear()
                         selected_venue = random.choice(venues)
 
-                    matches_on_current_date.append((team1, team2, match_datetime, selected_venue))
+                    matches_on_current_date.append(
+                        (team1, team2, match_datetime, selected_venue)
+                    )
                     available_teams.remove(team1)
                     available_teams.remove(team2)
                     team_pairs.remove((team1, team2))
@@ -72,12 +86,18 @@ def generate_fixtures():
 
         if matches_on_current_date:
             for match in matches_on_current_date:
-                fixtures.append({"team1": match[0], "team2": match[1], "venue": match[3], "date_time": match[2]})
+                fixtures.append(
+                    {
+                        "team1": match[0],
+                        "team2": match[1],
+                        "venue": match[3],
+                        "date_time": match[2],
+                    }
+                )
                 last_match_datetime[match[0]] = match[2]
                 last_match_datetime[match[1]] = match[2]
 
         current_date += timedelta(days=1)  # Move to the next day
-
 
     for fixture in fixtures:
         team1 = fixture["team1"]
@@ -86,9 +106,6 @@ def generate_fixtures():
         date_time = fixture["date_time"]
 
         # Create the Fixture
-        Fixtures.objects.create(team1=team1, team2=team2, venue=venue, date_time=date_time)
-    print("Fixtures added to the database.")
-    # for fixture in fixtures:
-
-    #     print(f"Team 1: {fixture['team1']}, Team 2: {fixture['team2']}, Venue: {fixture['venue']}, Date & Time: {fixture['date_time']}")
-    # print(len(fixtures))
+        Fixtures.objects.create(
+            team1=team1, team2=team2, venue=venue, date_time=date_time
+        )

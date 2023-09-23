@@ -1,3 +1,6 @@
+// scripts for the web app
+
+// logout confirmation dialog
 function confirmLogout() {
   var confirmation = confirm("Are you sure you want to log out?");
   if (confirmation) {
@@ -6,12 +9,14 @@ function confirmLogout() {
   }
 }
 
+
+// to dynamically add members to the team registration page
 const addMemberButton = document.getElementById('add-member-button');
 const submitButton = document.getElementById('submit-button');
 let memberCount = 1;
 const maxMemberCount = 21;
 
-document.getElementById("add-member-button").addEventListener("click", function() {
+document.getElementById("add-member-button").addEventListener("click", function () {
   // Check if the maximum number of members has been reached
   if (memberCount >= maxMemberCount) {
     return;
@@ -64,29 +69,29 @@ document.getElementById("add-member-button").addEventListener("click", function(
   memberCount++;
 
   // Add an event listener to the remove member button
-  removeMemberButton.addEventListener("click", function() {
+  removeMemberButton.addEventListener("click", function () {
     // Remove the member row from the member list
     memberRow.parentNode.removeChild(memberRow);
 
     // Decrement the member count
     memberCount--;
     if (memberCount < maxMemberCount) {
-        console.log("Member count");
-        document.getElementById('add-member-button').disabled=false;
+      console.log("Member count");
+      document.getElementById('add-member-button').disabled = false;
     }
   });
 
-// Disable the add member button if the maximum number of members has been reached
-if (memberCount >= maxMemberCount) {
+  // Disable the add member button if the maximum number of members has been reached
+  if (memberCount >= maxMemberCount) {
     addMemberButton.disabled = true;
-}
+  }
 });
 
 
-// Use jQuery to handle the click event
+// Use jQuery to handle the click eevent on the view member button on teams data page
 $(document).ready(function () {
   $('.view-members-button').click(function () {
-      console.log("Member count")
+    console.log("Member count")
     var teamId = $(this).data('team-id');
 
     // Make an AJAX request to fetch team members

@@ -5,10 +5,13 @@
 {% block content %}
 <div class="container mt-5">
     <a href="/" class="back-to-home-button">Back to home</a>
-
     <h1>Fixture Data</h1>
+    <!-- if no data, show the prompt message -->
     {% if not fixtures %}
-    <p>Only <strong> {{ registered_teams_count }} </strong> teams got registered. Fixtures will be scheduled when registration (10 teams) completes.</p>
+    <p>Only <strong> {{ registered_teams_count }} </strong> teams got
+        registered. Fixtures will be scheduled when registration (10 teams)
+        completes.</p>
+    <!-- fixture data -->
     {% else %}
     <table class="table table-bordered">
         <thead>
@@ -35,22 +38,26 @@
                 <td>{{ data.date_time }}</td>
                 <td>{{ data.team1_score }}</td>
                 <td>{{ data.team2_score }}</td>
+                <!-- score edit option for admin user -->
                 {% if user.is_authenticated %}
-                    {% with edit_allowed=data.date_time|is_edit_allowed %}
-                        {% if edit_allowed %}
-                        <td>
-                            <a href="{% url 'edit_score' fixture_id %}">Edit Score</a>
-                        </td>
-                        {% else %}
-                        <td>
-                            Editing not allowed
-                        </td>
-                        {% endif %}
-                    {% endwith %}
+                <!-- check whether edit is allowed or not -->
+                {% with edit_allowed=data.date_time|is_edit_allowed %}
+                <!-- edit option, if it's allowed -->
+                {% if edit_allowed %}
+                <td>
+                    <a href="{% url 'edit_score' fixture_id %}">Edit Score</a>
+                </td>
+                <!-- if edit not allowed, show prompt message -->
+                {% else %}
+                <td>
+                    Editing not allowed
+                </td>
+                {% endif %}
+                {% endwith %}
                 {% endif %}
             </tr>
             {% endfor %}
-            
+
         </tbody>
     </table>
     {% endif %}

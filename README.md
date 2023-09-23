@@ -1,11 +1,12 @@
-# Flat Organizational Hierarchy Search
-
+# Flat Organizational Hierarchy Searchootball tournament web application
 ![Python](https://img.shields.io/badge/Python-3.x-blue.svg)
 ![Django](https://img.shields.io/badge/Django-3.x-green.svg)
 ![MySQL](https://img.shields.io/badge/MySQL-5.x-orange.svg)
 
-This Django project allows users to search for employees within a flat organizational hierarchy and retrieve the leftmost/rightmost child of the searched employee.
-
+This Django project allows users to register teams, view fixtures and team data and allow admin to handle score details.
+admin user login details:
+username: admin
+password: admin
 ## Table of Contents
 
 - [Getting Started](#getting-started)
@@ -33,11 +34,11 @@ Before you begin, ensure you have met the following requirements:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/chandnirk4949/flat_organization_hierarchy_search.git
+   git clone https://github.com/chandnirk4949/football_tournament_webapp.git
 
 2. Navigate to the project directory:
 ```bash
-cd flat-organizational-hierarchy-search
+cd football_tournament
 ```
 
 3. Install the project dependencies:
@@ -66,11 +67,13 @@ Replace the placeholders (your_database_name, your_database_user, your_database_
 python manage.py runserver
 ```
 
-2. Access the web application in your browser at 'http://localhost:8000/search_employee/'.
+2. Access the web application in your browser at 'http://localhost:8000/'.
 
-3. Use the search form to search for an employee by name and select the direction (left or right).
+3. There are provisions to register teams, and view team details and when registration of 10 teams gets completed, users can view fixture schedules also. It is set to register 10 teams only. After that registration tab, is not provided.
 
-4. The application will display the searched employee and the leftmost/rightmost child based on your selection.
+4. Once the team registration is complete, fixtures are automatically scheduled with predefined data of 5 venues and dates in between 15-9-2023 and 30-10-2023.
+
+5. Admin user can login and logout using provided credentials to handle the fixture scores. the score edit is possible only 2 hours after the scheduled time of that particular fixture.
 
 ## Database Setup
 To set up the database and populate it with sample data, follow these steps:
@@ -84,12 +87,15 @@ Replace 'your_database_name' with your desired database name.
 
 2. Update the database settings in settings.py to use the newly created database.
 
-3. Apply migrations and insert data:
+3. Apply migrations:
 ```bash
 python manage.py makemigrations
 python manage.py migrate
 ```
-
+4. create a superuser with username as admin and password as admin
+```bash
+python manage.py createsuperuser
+```
 ## Contributing
 Contributions are welcome! If you'd like to contribute to this project, please follow these steps:
 
