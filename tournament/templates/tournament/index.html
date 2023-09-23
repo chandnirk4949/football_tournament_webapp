@@ -24,7 +24,8 @@
         {% endif %}
         {% if user.is_authenticated %}
         <li class="nav-item">
-            <a class="nav-link" href="logout" id="logout" onclick="confirmLogout()">Admin Logout</a>
+            <a class="nav-link" href="logout" id="logout"
+                onclick="confirmLogout()">Admin Logout</a>
         </li>
         {% else %}
         <li class="nav-item">
@@ -40,14 +41,18 @@
             <p>This is a simple web app for managing a football tournament. You
                 can use this app to create and manage teams, fixtures, and
                 results.</p>
-            <p>To get started, please register your team or log in as an admin.</p>
         </div>
         <!-- Check if the registered_teams_count is 10 or more to display the "Registration closed" message -->
-        {% if registered_teams_count >= 10 %}
         <div class="tab-pane active" id="registration-closed">
-            <p id="registration-closed"><strong></strong>Registration closed, stay tuned...!!!</strong></p>
+            <br>
+            <br>
+            {% if registered_teams_count >= 10 %}
+            <h3 id="registration-closed"><strong>Registration closed, stay
+                    tuned...!!!</strong></h3>
+            {% else %}
+            <p>To get started, please register your team or log in as an admin.</p>
+            {% endif %}
         </div>
-        {% endif %}
     </section>
 </main>
 {% endblock %}
