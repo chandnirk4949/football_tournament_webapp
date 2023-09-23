@@ -1,0 +1,58 @@
+{% extends "tournament/base.html" %}
+{% load static %}
+{% load tournament.custom_tags %}
+
+{% block content %}
+<div class="container mt-5">
+    <a href="/" class="back-to-home-button">Back to home</a>
+
+    <h1>Fixture Data</h1>
+    {% if not fixtures %}
+    <p>Only <strong> {{ registered_teams_count }} </strong> teams got registered. Fixtures will be scheduled when registration (10 teams) completes.</p>
+    {% else %}
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Fixture ID</th>
+                <th>Team 1</th>
+                <th>Team 2</th>
+                <th>Venue</th>
+                <th>Date & Time</th>
+                <th>Team 1 Score</th>
+                <th>Team 2 Score</th>
+                {% if user.is_authenticated %}
+                <th>Actions</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for fixture_id, data in fixtures.items %}
+            <tr>
+                <td>{{ fixture_id }}</td>
+                <td>{{ data.team1_name }}</td>
+                <td>{{ data.team2_name }}</td>
+                <td>{{ data.venue }}</td>
+                <td>{{ data.date_time }}</td>
+                <td>{{ data.team1_score }}</td>
+                <td>{{ data.team2_score }}</td>
+                {% if user.is_authenticated %}
+                    {% with edit_allowed=data.date_time|is_edit_allowed %}
+                        {% if edit_allowed %}
+                        <td>
+                            <a href="{% url 'edit_score' fixture_id %}">Edit Score</a>
+                        </td>
+                        {% else %}
+                        <td>
+                            Editing not allowed
+                        </td>
+                        {% endif %}
+                    {% endwith %}
+                {% endif %}
+            </tr>
+            {% endfor %}
+            
+        </tbody>
+    </table>
+    {% endif %}
+</div>
+{% endblock %}

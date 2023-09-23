@@ -1,0 +1,128 @@
+.bg-primary {
+  background-color: #007bff;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.tab-content {
+  margin-top: 20px;
+}
+
+.nav-tabs {
+  border-bottom: 1px solid #ccc;
+}
+
+.nav-link.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.container {
+  /* height: 100vh; */
+  text-align: center;
+  min-height: 100vh;
+}
+
+.container1 {
+  text-align: center;
+}
+
+
+.back-to-home-button {
+  position: fixed;
+  top: 0px;
+  left: 20px;
+  /* background-color: #249ea7; */
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.back-to-home-button:hover {
+  color: #fff;
+}
+
+.team-member-form {
+  margin: 0 auto;
+  width: 500px;
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.team-member-form .row {
+  margin-bottom: 10px;
+}
+
+.team-member-form input,
+.team-member-form select,
+.team-member-form button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-family: sans-serif;
+}
+
+.team-member-form label {
+  font-size: 16px;
+  font-family: sans-serif;
+}
+
+.team-member-form button {
+  background-color: #3e969c;
+  color: #fff;
+  cursor: pointer;
+}
+
+
+.member-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.member-row label,
+.member-row input,
+.member-row select,
+.member-row button {
+  margin: 0 10px;
+}
+
+.remove-member-button {
+  width: 200px;
+  height: 45px;
+}
+
+.member-name-input {
+  width: 400px;
+}
+
+.team-member-form {
+  width: 800px;
+}
+
+
+.login-form {
+  /* display: flex; */
+  width: 600px;
+  /* flex-direction: column; */
+  /* align-items: center; */
+}
+
+.parent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn.btn-primary {
+  background-color: #3e969c;
+}
+
+.registration-closed {
+  font-weight: bold;
+}

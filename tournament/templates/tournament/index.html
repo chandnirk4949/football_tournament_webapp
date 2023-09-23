@@ -1,0 +1,54 @@
+{% extends "tournament/base.html" %}
+{% load static %}
+
+{% block title %}Football Tournament{% endblock %}
+
+{% block content %}
+<!-- Main content -->
+<main class="container">
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="fixtures">Fixtures</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="teams">Teams</a>
+        </li>
+        <!-- Check if the registered_teams_count is less than 10 to display the "Register Team" link -->
+        {% if registered_teams_count < 10 %}
+        <li class="nav-item">
+            <a class="nav-link" href="register">Register Team</a>
+        </li>
+        {% endif %}
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+            <a class="nav-link" href="logout" id="logout" onclick="confirmLogout()">Admin Logout</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+            <a class="nav-link" href="login">Admin Login</a>
+        </li>
+        {% endif %}
+    </ul>
+
+    <!-- Home page content -->
+    <section class="tab-content">
+        <div class="tab-pane active" id="home">
+            <h2>Welcome to the Football Tournament!</h2>
+            <p>This is a simple web app for managing a football tournament. You
+                can use this app to create and manage teams, fixtures, and
+                results.</p>
+            <p>To get started, please register your team or log in as an admin.</p>
+        </div>
+        <!-- Check if the registered_teams_count is 10 or more to display the "Registration closed" message -->
+        {% if registered_teams_count >= 10 %}
+        <div class="tab-pane active" id="registration-closed">
+            <p id="registration-closed"><strong></strong>Registration closed, stay tuned...!!!</strong></p>
+        </div>
+        {% endif %}
+    </section>
+    
+</main>
+{% endblock %}
