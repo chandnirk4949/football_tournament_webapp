@@ -88,7 +88,7 @@ document.getElementById("add-member-button").addEventListener("click", function 
 });
 
 
-// Use jQuery to handle the click eevent on the view member button on teams data page
+// Use jQuery to handle the click eevent on the view team members button on teams data page
 $(document).ready(function () {
   $('.view-members-button').click(function () {
     console.log("Member count")

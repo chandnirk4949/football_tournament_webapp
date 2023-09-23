@@ -121,3 +121,7 @@
 .registration-closed {
   font-weight: bold;
 }
+
+#edit-form {
+  height: 100vh;
+}
