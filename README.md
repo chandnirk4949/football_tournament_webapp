@@ -14,7 +14,7 @@ password: admin
   - [Installation](#installation)
   - [Environment Variables](#environment-variables)
 - [Usage](#usage)
-  - [Search](#search)
+  - [Functionalities](#functionalities)
 - [Database Setup](#database-setup)
 - [Contributing](#contributing)
 - [License](#license)
@@ -61,7 +61,7 @@ Create a '.env' file in the project root directory with the following environmen
 Replace the placeholders (your_database_name, your_database_user, your_database_password, etc.) with your actual database connection details.
 
 ## Usage
-### Search
+### Functionalities
 1. Run the Django development server:
 ```bash
 python manage.py runserver
